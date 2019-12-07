@@ -22,7 +22,7 @@
     .align 2
     .globl __isr_vector
 __isr_vector:
-    .long   __StackTop                                      /* Top of Stack */
+    .long   _estack                                         /* Top of Stack */
     .long   Reset_Handler                                   /* Reset Handler */
     .long   NMI_Handler                                     /* NMI Handler*/
     .long   HardFault_Handler                               /* Hard Fault Handler*/
@@ -475,14 +475,6 @@ PendSV_Handler:
     bx    r0
     .size PendSV_Handler, . - PendSV_Handler
 
-    .align 1
-    .thumb_func
-    .weak SysTick_Handler
-    .type SysTick_Handler, %function
-SysTick_Handler:
-    ldr   r0,=SysTick_Handler
-    bx    r0
-    .size SysTick_Handler, . - SysTick_Handler
 
     .align 1
     .thumb_func
