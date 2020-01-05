@@ -22,7 +22,7 @@
     .align 2
     .globl __isr_vector
 __isr_vector:
-    .long   __StackTop                                      /* Top of Stack */
+    .long   _estack                                         /* Top of Stack */
     .long   Reset_Handler                                   /* Reset Handler */
     .long   NMI_Handler                                     /* NMI Handler*/
     .long   HardFault_Handler                               /* Hard Fault Handler*/
