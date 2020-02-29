@@ -248,8 +248,12 @@ status_t LPI2C_MasterCheckAndClearError(LPI2C_Type *base, uint32_t status)
         /* Clear the flags. */
         LPI2C_MasterClearStatusFlags(base, status);
 
-        /* Reset fifos. These flags clear automatically. */
-        base->MCR |= LPI2C_MCR_RRF_MASK | LPI2C_MCR_RTF_MASK;
+        /* Reset fifos (Except for NAK, which doesn't generate a STOP automatically). */
+        /* These flags clear automatically. */
+        if (kStatus_LPI2C_Nak != result)
+          {
+            base->MCR |= LPI2C_MCR_RRF_MASK | LPI2C_MCR_RTF_MASK;
+          }
     }
     else
     {
