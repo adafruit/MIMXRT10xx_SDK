@@ -475,6 +475,14 @@ PendSV_Handler:
     bx    r0
     .size PendSV_Handler, . - PendSV_Handler
 
+    .align 1
+    .thumb_func
+    .weak SysTick_Handler
+    .type SysTick_Handler, %function
+SysTick_Handler:
+    ldr   r0,=SysTick_Handler
+    bx    r0
+    .size SysTick_Handler, . - SysTick_Handler
 
     .align 1
     .thumb_func
